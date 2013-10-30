@@ -56,7 +56,7 @@ def install_binary(path)
   to = new_resource.install_binary[:to]
   to_user = new_resource.install_binary[:user]
   to_group = new_resource.install_binary[:group]
-  to_chown = "#{to_user}#{to_group ? ';' + to_group : ''}"
+  to_chown = "#{to_user}#{to_group ? ':' + to_group : ''}"
   execute "cd #{path} && cp #{from} #{to}"
   execute "cd #{path} && chown #{to_chown} #{to}" if to_user
 end
